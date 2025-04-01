@@ -5,6 +5,8 @@ services:
     devices:
       - /dev/snd
     volumes:
-      - /home/jonathan/music:/root/music:ro
+      - ~/Music:/root/Music:ro
     restart: unless-stopped
+    environment:
+      - PULSE_SERVER=tcp:host.containers.internal:4713 # PipeWire audio forwarding
     network_mode: host

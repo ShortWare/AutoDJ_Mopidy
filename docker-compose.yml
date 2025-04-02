@@ -1,7 +1,7 @@
 services:
   mopidy:
     container_name: mopidy
-    image: jjok/mopidy:latest
+    image: bartoszeq/mopidy:latest
     devices:
       - /dev/snd
     volumes:

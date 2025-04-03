@@ -22,6 +22,7 @@ RUN wget -O gst-plugin-spotify.deb https://github.com/kingosticks/gst-plugins-rs
  && dpkg -i gst-plugin-spotify.deb
 
 COPY requirements.txt requirements.txt
+COPY mopidy.conf /etc/mopidy/mopidy.conf
 
 # RUN pip3 install -r requirements.txt \
 RUN pip3 install --break-system-packages -r requirements.txt \
@@ -33,8 +34,8 @@ RUN mkdir /root/music
 
 VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy", "/root/music"]
 
-ENV TZ=Europe/London
+ENV TZ=Europe/Warsaw
 
 EXPOSE 6600 6680
 
-ENTRYPOINT ["mopidy"]
+ENTRYPOINT ["mopidy", "--config", "/etc/mopidy/mopidy.conf"]

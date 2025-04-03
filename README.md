@@ -1,4 +1,4 @@
-My Mopidy Setup
+Mopidy Setup
 ===============
 
 Build
@@ -6,23 +6,24 @@ Build
 
 Build
 
-    docker build --pull -t bartoszeq/mopidy --build-arg BUILD_FROM=debian:stable-slim .
+    podman build --pull -t bartoszeq/mopidy --build-arg BUILD_FROM=docker.io/debian:stable-slim .
 
 
 Run
 ---
 
-    docker compose up -d
+    pactl load-module module-native-protocol-tcp listen=0.0.0.0 auth-ip-acl=127.0.0.1
+    podman-compose up -d
 
 View logs:
 
-    docker logs -f mopidy
+    podman-compose logs -f mopidy
 
 Execute any Mopidy command:
 
-    docker exec mopidy mopidy <cmd>
-    docker exec mopidy mopidy config
-    docker exec mopidy mopidy deps
+    podman exec mopidy mopidy <cmd>
+    podman exec mopidy mopidy config
+    podman exec mopidy mopidy deps
 
 
 Mount music from USB
